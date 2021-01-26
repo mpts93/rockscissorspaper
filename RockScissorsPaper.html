@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS</title>
+</head>
+<body style="background: url(https://media1.s-nbcnews.com/i/newscms/2016_11/1016196/rock-paper-scissors-today-tease-160317_de7dcaf2904059d3334a924d83d3d836.jpg);">
+<p style="font-size: 50px; color: rgb(238, 230, 230); width: 40%; margin-left: 30%; margin-right: 30%; text-align: center;" id="heading">Choose wisely!</p>
+<button style="font-size: 50px; width: 40%; margin-left: 30%; margin-right: 30%; margin-top: 4%; text-align: center;" id="playbutton-rock">Rock</button>
+<button style="font-size: 50px; width: 40%; margin-left: 30%; margin-right: 30%; margin-top: 5%; text-align: center;" id="playbutton-scissors">Scissors</button>
+<button style="font-size: 50px; width: 40%; margin-left: 30%; margin-right: 30%; margin-top: 5%; text-align: center;" id="playbutton-paper">Paper</button>
+<div style="font-size: 30px; width: 40%; margin-left: 30%; margin-right: 30%; margin-top: 5%; text-align: center;" >
+    <p style="color: rgb(238, 230, 230);">Your victories:</p>   
+    <div id="scoreboard1" style="color: rgb(238, 230, 230);"></div>
+    <p style="color: rgb(238, 230, 230);">Your opponents victories:</p>   
+    <div id="scoreboard2" style="color: rgb(238, 230, 230);"></div>
+   </div>
+
+<script>
+
+
+function play () { 
+
+function playRound(playerSelection, computerSelection) {
+   
+   
+    if (playerSelection == "ROCK" && computerSelection == "ROCK" || playerSelection == "PAPER" && computerSelection== "PAPER" || playerSelection == "SCISSORS" && computerSelection == "SCISSORS") {
+            winCount++;
+            loseCount++;  
+            display();  
+            return "It's a tie";
+        
+        } 
+        if (playerSelection == "PAPER" && computerSelection == "SCISSORS" || playerSelection == "ROCK" && computerSelection == "PAPER" || playerSelection == "SCISSORS" && computerSelection == "ROCK") {
+            loseCount++;
+            display();  
+            return "You lose";
+        }
+        if (playerSelection == "PAPER" && computerSelection == "ROCK" || playerSelection == "ROCK" && computerSelection == "SCISSORS" || playerSelection == "SCISSORS" && computerSelection == "PAPER") {
+            winCount++;
+            display();  
+            return "You win";
+    } else {
+        return "Incorrect value. Try again";
+
+    }
+    }
+
+function computerPlay() {
+    const answers = ["ROCK", "SCISSORS", "PAPER"];
+ 
+    var rand = answers[(Math.random() * answers.length) | 0]
+
+    return rand;
+}
+  
+
+const playerSelection = event.target.id.split("-")[1].toUpperCase();
+const computerSelection = computerPlay();
+  
+  alert(playRound(playerSelection, computerSelection));
+
+}
+
+var winCount = 0;
+var loseCount = 0;
+display();
+
+
+function display () {
+var scoreBoard1 = document.getElementById("scoreboard1");
+scoreBoard1.innerHTML = winCount;
+var scoreBoard2 = document.getElementById("scoreboard2");
+scoreBoard2.innerHTML = loseCount;
+}
+
+var playButtonRock = document.getElementById("playbutton-rock");
+playButtonRock.addEventListener("click", play);
+
+var playButtonScissors = document.getElementById("playbutton-scissors");
+playButtonScissors.addEventListener("click", play);
+
+var playButtonPaper = document.getElementById("playbutton-paper");
+playButtonPaper.addEventListener("click", play);
+
+</script>
+
+
+
+</body>
+</html>
